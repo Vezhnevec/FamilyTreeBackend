@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FamilyTree.Api/FamilyTree.Api.csproj" />
+    <Project Path="src/FamilyTree.Application/FamilyTree.Application.csproj" />
+    <Project Path="src/FamilyTree.Domain/FamilyTree.Domain.csproj" />
+    <Project Path="src/FamilyTree.Infrastructure/FamilyTree.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FamilyTree.Tests.Unit/FamilyTree.Tests.Unit.csproj" />
+  </Folder>
+  <Folder Name="/Элементы решения/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+</Solution>
