@@ -5,20 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FamilyTree.Domain.Entities;
-public class Person  // ← Обязательно public!
+public class Person  
 {
     public Guid Id { get; set; }
-    public string FirstName { get; set; } = string.Empty;
-    public string LastName { get; set; } = string.Empty;
+    private string _firstName = string.Empty;
+
+    public string FirstName
+    {
+        get => _firstName;
+        set => _firstName = value ?? string.Empty; 
+    }
+    private string _lastName = string.Empty;
+
+    public string LastName
+    {
+        get => _lastName;
+        set => _lastName = value ?? string.Empty;  
+    }
     public DateOnly? BirthDate { get; set; }
     public DateOnly? DeathDate { get; set; }
     public Gender Gender { get; set; }
     public string? Bio { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
-    // В конец класса Person добавьте:
 
-    // Все связи, где этот человек участвует
     public ICollection<Relationship> Relationships { get; set; } = new List<Relationship>();
 }
 

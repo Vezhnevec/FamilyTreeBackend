@@ -8,14 +8,13 @@ public class ApplicationDbContext : DbContext
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options) { }
 
-    public DbSet<Person> Persons => Set<Person>();
-    public DbSet<Relationship> Relationships => Set<Relationship>();  // ← Добавили
+    public virtual DbSet<Person> Persons => Set<Person>();
+    public virtual DbSet<Relationship> Relationships => Set<Relationship>();  
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Настройка Person
         modelBuilder.Entity<Person>(entity =>
         {
             entity.HasKey(e => e.Id);
@@ -35,7 +34,6 @@ public class ApplicationDbContext : DbContext
                   .HasDefaultValueSql("CURRENT_TIMESTAMP");
         });
 
-        // Настройка Relationship  ← Добавили новый блок
         modelBuilder.Entity<Relationship>(entity =>
         {
             entity.HasKey(e => e.Id);
@@ -44,7 +42,7 @@ public class ApplicationDbContext : DbContext
             entity.HasOne(e => e.Person)
                   .WithMany(p => p.Relationships)
                   .HasForeignKey(e => e.PersonId)
-                  .OnDelete(DeleteBehavior.Restrict);  // Чтобы не удалило всё дерево
+                  .OnDelete(DeleteBehavior.Restrict); 
 
             // Связь с Person (с кем)
             entity.HasOne(e => e.RelatedPerson)
@@ -52,7 +50,6 @@ public class ApplicationDbContext : DbContext
                   .HasForeignKey(e => e.RelatedPersonId)
                   .OnDelete(DeleteBehavior.Restrict);
 
-            // Индекс для быстрого поиска связей
             entity.HasIndex(e => new { e.PersonId, e.RelatedPersonId, e.Type })
                   .IsUnique();
         });

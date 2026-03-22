@@ -28,9 +28,9 @@ public class RelationshipsController : ControllerBase
             {
                 Id = r.Id,
                 PersonId = r.PersonId,
-                PersonName = $"{r.Person.FirstName} {r.Person.LastName}",  // ← Собираем имя здесь
+                PersonName = $"{r.Person.FirstName} {r.Person.LastName}", 
                 RelatedPersonId = r.RelatedPersonId,
-                RelatedPersonName = $"{r.RelatedPerson.FirstName} {r.RelatedPerson.LastName}",  // ← Собираем имя здесь
+                RelatedPersonName = $"{r.RelatedPerson.FirstName} {r.RelatedPerson.LastName}",  
                 Type = r.Type,
                 CreatedAt = r.CreatedAt
             })

@@ -1,14 +1,14 @@
-﻿using FamilyTree.Api.Models;           // ← Для CreatePersonDto, UpdatePersonDto
-using FamilyTree.Domain.Entities;      // ← Для Person, Gender
-using FamilyTree.Infrastructure.Data;  // ← Для ApplicationDbContext
+﻿using FamilyTree.Api.Models;          
+using FamilyTree.Domain.Entities;      
+using FamilyTree.Infrastructure.Data;  
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace FamilyTree.Api.Controllers;  // ← Важно: правильный namespace
+namespace FamilyTree.Api.Controllers;  
 
-[ApiController]  // ← Обязательно!
-[Route("api/[controller]")]  // ← Обязательно!
-public class PersonsController : ControllerBase  // ← public класс!
+[ApiController]  
+[Route("api/[controller]")] 
+public class PersonsController : ControllerBase  
 {
     private readonly ApplicationDbContext _context;
 
@@ -18,7 +18,7 @@ public class PersonsController : ControllerBase  // ← public класс!
     }
 
     // GET: api/persons
-    [HttpGet]  // ← Атрибут метода!
+    [HttpGet] 
     public async Task<ActionResult<IEnumerable<Person>>> GetPersons()
     {
         return await _context.Persons.ToListAsync();
@@ -56,13 +56,13 @@ public class PersonsController : ControllerBase  // ← public класс!
     }
     // PUT: api/persons/{id}
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdatePerson(Guid id, [FromBody] UpdatePersonDto dto)  // ← Changed!
+    public async Task<IActionResult> UpdatePerson(Guid id, [FromBody] UpdatePersonDto dto) 
     {
         var person = await _context.Persons.FindAsync(id);
         if (person == null) return NotFound();
 
-        person.FirstName = dto.FirstName;      // ← Теперь работает!
-        person.LastName = dto.LastName;        // ← Теперь работает!
+        person.FirstName = dto.FirstName;      
+        person.LastName = dto.LastName;       
         person.BirthDate = dto.BirthDate;
         person.DeathDate = dto.DeathDate;
         person.Gender = dto.Gender;
