@@ -10,18 +10,8 @@ public class Person
     public Guid Id { get; set; }
     private string _firstName = string.Empty;
 
-    public string FirstName
-    {
-        get => _firstName;
-        set => _firstName = value ?? string.Empty; 
-    }
-    private string _lastName = string.Empty;
-
-    public string LastName
-    {
-        get => _lastName;
-        set => _lastName = value ?? string.Empty;  
-    }
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
     public DateOnly? BirthDate { get; set; }
     public DateOnly? DeathDate { get; set; }
     public Gender Gender { get; set; }
@@ -30,6 +20,7 @@ public class Person
     public DateTime? UpdatedAt { get; set; }
 
     public ICollection<Relationship> Relationships { get; set; } = new List<Relationship>();
+
 }
 
 public enum Gender

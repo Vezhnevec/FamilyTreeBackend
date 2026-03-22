@@ -1,3 +1,4 @@
+using FamilyTree.Api.Middleware;
 using FamilyTree.Api.Validators;
 using FamilyTree.Infrastructure.Data;
 using FluentValidation;
@@ -37,6 +38,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

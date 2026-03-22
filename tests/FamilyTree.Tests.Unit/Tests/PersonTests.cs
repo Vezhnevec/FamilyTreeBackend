@@ -37,8 +37,7 @@ public class PersonTests
             LastName = "Иванов"
         };
 
-        person.FirstName.Should().BeEmpty();  
-        person.FirstName.Should().NotBeNull();  
+        person.FirstName.Should().BeNull();
     }
 
     [Fact]
@@ -50,8 +49,7 @@ public class PersonTests
             LastName = null
         };
 
-        person.LastName.Should().BeEmpty();  
-        person.LastName.Should().NotBeNull();  
+        person.LastName.Should().BeNull();
     }
 
     [Fact]

@@ -7,18 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
+
 namespace FamilyTree.Tests.Unit.Controllers;
 
-public class PersonsControllerTests
+public class PersonsControllerTests : TestBase
 {
     [Fact]
     public async Task CreatePerson_WithValidDto_ReturnsCreatedAtAction()
     {
-        var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
-            .Options;
-
-        using var context = new ApplicationDbContext(options);
+        using var context = CreateContext();  // ← Используем метод из базового класса
         var controller = new PersonsController(context);
 
         var dto = new CreatePersonDto
